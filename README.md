@@ -1,7 +1,75 @@
-# namanmittal_spider_task1
-1. The block chain code is about Shamir's Secret Sharing scheme. It is a way to securely split a secret into multiple parts called shares so that only a certain number of them which is the threshold are needed to reconstruct the original secret. a secret number is hidden using a randomly generated polynomial. Each share is a point on this polynomial. Out of n shares generated, any t number of shares can be used to recover the original secret using Lagrange interpolation. The code shows both creating shares and reconstructing the secret from a random subset of shares. secret, no. of shares and threshold number is taken from the user. then using random function, random coefficients are generated to generate the polynomial with the constant being the secret value. then using lagrange interpolation we find the secret back.
+# Vehicle Classification using ResNet18
 
-2. The ML code is used to perform image classification using a pre-trained ResNet18 model in PyTorch on a dataset of vehicles. The dataset is first unzipped, and images are resized and converted into tensors. It is then split into training and testing sets. A pre-trained ResNet18 model is used to classify images into 7 vehicle categories. The model is trained for 5 epochs, using cross-entropy loss and the Adam optimizer. After training, the model is evaluated on the test set for accuracy and loss. Finally, a few random predictions are visualized using matplotlib, comparing actual and predicted labels to showcase the model's performance.
+A deep learning project that uses a **pretrained ResNet18** model to classify vehicle images into **7 different classes** using PyTorch.
 
-3. Conducted Google Dorking discovery exercise to identify exposed public documents, login panels, configuration files, and contact info for websites: tesla.com, science.gov, and nasa.gov.
-Used commands mentioned in the report to find the above and created the report.
+## Overview
+
+The project:
+
+* Loads a vehicle image dataset using `ImageFolder`.
+* Resizes images to `224 × 224`.
+* Splits the dataset into **80% training** and **20% testing** data.
+* Uses a pretrained **ResNet18** model.
+* Replaces the final layer with a 7-class classifier.
+* Trains the model using **Cross-Entropy Loss** and **Adam optimizer**.
+* Evaluates the model on the test set.
+* Displays sample predictions for each vehicle class.
+
+## Model
+
+**Architecture:** ResNet18
+**Framework:** PyTorch
+**Input Size:** `224 × 224`
+**Number of Classes:** `7`
+**Epochs:** `3`
+**Batch Size:** `32`
+**Learning Rate:** `0.001`
+
+```python
+model = models.resnet18(pretrained=True)
+model.fc = nn.Linear(model.fc.in_features, 7)
+```
+
+## Dataset Structure
+
+The dataset is expected to follow the `ImageFolder` structure:
+
+```text
+Vehicles/
+├── class_1/
+├── class_2/
+├── class_3/
+├── class_4/
+├── class_5/
+├── class_6/
+└── class_7/
+```
+
+## Requirements
+
+* Python 3.x
+* PyTorch
+* Torchvision
+* NumPy
+* Matplotlib
+* Pillow
+
+## Running
+
+The notebook is designed to run in **Google Colab** and loads the dataset from Google Drive.
+
+```bash
+python mlbasictask.py
+```
+
+## Concepts Used
+
+* Image Classification
+* Transfer Learning
+* Convolutional Neural Networks
+* ResNet18
+* PyTorch
+* GPU Acceleration
+* Model Evaluation
+
+> **Note:** This project is intended for educational purposes and demonstrates a basic transfer-learning workflow for image classification.
